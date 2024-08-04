@@ -1,6 +1,8 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { fn } from "@storybook/test";
 import { Button } from "min-fish-ui";
+import { Custom } from "./Custom.stories";
+import CustomSource from "./Custom.stories?raw";
 
 // More on how to set up stories at: https://storybook.js.org/docs/writing-stories#default-export
 const meta = {
@@ -50,4 +52,12 @@ export const Small: Story = {
     label: "Button",
   },
 };
-export { Custom } from "./Custom.stories";
+(Custom as any).parameters = {
+  docs: {
+    source: {
+      code: CustomSource,
+    },
+  },
+};
+
+export { Custom };
