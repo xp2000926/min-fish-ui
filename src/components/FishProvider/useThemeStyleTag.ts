@@ -1,6 +1,6 @@
 import * as React from "react";
 import { FishProviderProps } from "min-fish-ui";
-import {createCSSRuleFromTheme} from "./createCSSRuleFromTheme"
+import { createCSSRuleFromTheme } from "./createCSSRuleFromTheme";
 
 // 生成 style 标签
 const createStyleTag = (
@@ -34,7 +34,7 @@ const insertSheet = (tag: HTMLStyleElement, rule: string) => {
 };
 
 export const useThemeStyleTag = ({ theme }: Partial<FishProviderProps>) => {
-    const targetDocument = document;
+  const targetDocument = document;
 
   const generatedId = React.useId();
   // id里冒号，冒号不能用在 css类名中，所以去掉
@@ -51,21 +51,26 @@ export const useThemeStyleTag = ({ theme }: Partial<FishProviderProps>) => {
     () => createCSSRuleFromTheme(`.${themeClassName}`, theme),
     [theme, themeClassName]
   );
-    // console.log("rule", rule);
-    //生成 style 标签 
-    const styleTag = React.useRef<HTMLStyleElement | undefined | null>();
-    React.useLayoutEffect(() => {
-      styleTag.current = createStyleTag(targetDocument, {
-        id: themeClassName,
-      });
-      if (styleTag.current) {
-        insertSheet(styleTag.current, rule);
-      }
+  // console.log("rule", rule);
+  //生成 style 标签
+  const styleTag = React.useRef<HTMLStyleElement | undefined | null>();
+  React.useLayoutEffect(() => {
+    styleTag.current = createStyleTag(targetDocument, {
+      id: themeClassName,
+    });
+    if (styleTag.current) {
+      insertSheet(styleTag.current, rule);
+    }
 
-      return () => {
-        styleTag.current?.remove();
-      };
-    }, [themeClassName, targetDocument, rule]);
+    return () => {
+      styleTag.current?.remove();
+    };
+  }, [themeClassName, targetDocument, rule]);
+  console.log(
+    "%c [themeClassName]-64",
+    "font-size: 13px;background:pink;color:#bf2c9f",
+    themeClassName
+  );
 
   return { themeClassName, rule };
 };
