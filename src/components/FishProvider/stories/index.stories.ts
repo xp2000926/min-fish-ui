@@ -10,7 +10,6 @@ const meta = {
 
 export default meta;
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
 (Default as any).parameters = {
   docs: {
     source: {
